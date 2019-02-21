@@ -6,6 +6,7 @@ title: Contact Ahmed Bouchefra
 <div id="contact">
   <h1 class="pageTitle">Contact Me</h1>
   <div class="contactContent">
+    <p>You can send me a message via this form!</p>
   </div>
   <form action="https://formspree.io/techiediaries9@gmail.com" method="POST">
     <label for="name">Name</label>
