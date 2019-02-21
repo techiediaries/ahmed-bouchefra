@@ -1,5 +1,5 @@
 title: Ahmed Bouchefra
-description: Long Form Jekyll theme built with SASS / COMPASS / SUSY
+description: Web developer and technical writer
 
 url: http://techiediaries.github.com/ahmed-bouchefra
 baseurl: ""
@@ -20,9 +20,9 @@ navigation:
     url: /contact
 
 social:
-  github: brianmaierjr
-  twitter: brianmaierjr
-  facebook: brianmaierjr
-  email: brimaidesigns@gmail.com
+  github: techiediaries
+  twitter: ahmedbouchefra
+  facebook: ahmed.bouchefra
+  email: techiediaries9@gmail.com
 
-google_analytics: "UA-58263416-1"
+google_analytics: "UA-74071120-3"
