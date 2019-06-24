@@ -1,7 +1,7 @@
 title: Ahmed Bouchefra
 description: Web developer and technical writer
 
-url: http://techiediaries.github.com/ahmed-bouchefra
+url: https://www.ahmedbouchefra.com
 baseurl: ""
 paginate_path: "blog/page:num/"
 permalink: blog/:title/
