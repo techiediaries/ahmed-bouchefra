@@ -1,8 +1,10 @@
 ---
 layout: post
-title:  "Angular 9/8 Tutorial & Example — Upload files with FormData, HttpClient, RxJS, and Material ProgressBar"
+title:  "Angular 9/8 Tutorial & Example — Upload Files with FormData, HttpClient, RxJS, and Material ProgressBar"
 date:   2019-11-14
 ---
+
+![Angular 9/8 Tutorial & Example — Upload files with FormData, HttpClient, RxJS, and Material ProgressBar](https://miro.medium.com/max/815/1*HeFIRjp6D5-MDhITi2Uh7g.png)
 
 In this tutorial, we’ll see by example how to upload multiple image files using  **FormData**,  **HttpClient** (for posting  **multipart/form-data**), Angular 9/8 and TypeScript.
 
