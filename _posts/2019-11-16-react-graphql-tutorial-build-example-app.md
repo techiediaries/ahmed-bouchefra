@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "React/GraphQL Tutorial: Build a First Example App in 4 Easy Steps"
-date:   2019-11-14
+date:   2019-11-16
 ---
 
 In this tutorial, we'll learn how to build a React application in four easy steps. we'll learn how to:
