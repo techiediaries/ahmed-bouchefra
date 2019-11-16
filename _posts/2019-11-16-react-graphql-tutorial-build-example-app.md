@@ -10,12 +10,8 @@ In this tutorial, we'll learn how to build a React application in four easy step
 - Initialize a React project,
 - Use React Hooks,
 - Consume a GraphQL API,
-- Building the final production bundles and deploy them to the cloud
+- Building the final production bundles so you can deploy them to the cloud
 
-
->Throughout this tutorial, we'll see by example how to consume and fetch a GraphQL API with React Hooks and [Apollo Client](https://www.apollographql.com/).
-
->We'll particularly see how to use the `useQuery` hook to send GraphQL queries to the server and the `gql` tag to write GraphQL queries.
 
 We'll be consuming a third-party GraphQL API available from this [URL](https://graphql-pokemon.now.sh/)
 
