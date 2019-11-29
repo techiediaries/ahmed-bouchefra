@@ -4,6 +4,7 @@ title: "Using Python with Electron Tutorial"
 image: "images/content/python.png"
 excerpt: "In this tutorial, you'll learn to build GUIs for your Python applications using Electron and web technologies i.e HTML, CSS and JavaScript" 
 tags : [python , nodejs, electron , node, django] 
+date:   2019-11-16
 canonical: "https://www.techiediaries.com/python-electron-tutorial/"
 ---
 
