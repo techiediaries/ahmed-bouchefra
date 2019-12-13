@@ -6,7 +6,7 @@ date:   2019-12-13
 
 
 
-In this quick tutorial we'll see by example how to consume a third-party API using Axios inside an Ionic 4 project based on TypeScript and React project. We'll see how to:
+In this quick tutorial we'll see by example how to consume a third-party API using Axios inside an Ionic 4 project based on TypeScript and React. We'll see how to:
 
 - Install and use Axios for sending HTTP GET requests in TypeScript and React,
 - Consume a third-party REST API,
