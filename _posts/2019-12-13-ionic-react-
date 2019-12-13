@@ -1,0 +1,131 @@
+# Send HTTP GET Request for Consuming a REST API with Axios in Ionic 4 App (Based on TypeScript & React Hooks)
+
+In this quick tutorial we'll see by example how to consume a third-party API using Axios inside an Ionic 4 project based on TypeScript and React project. We'll see how to:
+
+- Install and use Axios for sending HTTP GET requests in TypeScript and React,
+- Consume a third-party REST API,
+- Use React Hooks like useState and useEffect,
+- Display the data using Ionic Card and List components.
+
+Let's get started with the prerequisites!
+
+You need to have the following: 
+
+- Node and NPM installed on your machine,
+- Knowledge of TypeScript and React,
+- Ionic CLI v5+ and a Ionic/React project.
+
+
+# Step 1 -- Installing Axios 
+
+We'll see how to install Axios and consume a third-party RESTful API in our application, and 
+Having themed our application, let's now see how to fetch data using Axios. We'll use the third-party API available from NewsAPI.org.
+
+First, we need to grab an API key, so that we can communicate with the API. Go to the registration page, enter your information, and register an account. You'll be given an API key; note it, and let's continue.
+
+Head back to your terminal, and run the following command to install Axios:
+
+
+    $ npm install axios --save
+
+Next, open the `src/pages/Home.tsx` file, and start by importing Axios and `IonButton`:
+
+
+    import {
+      IonButton
+    } from '@ionic/react';
+    
+    import axios from 'axios';
+
+Next, define the `API_KEY` and `URL` constant variables:
+
+
+    const  API_KEY  =  "<YOUR_API_KEY_HERE>";
+    const  URL  =  `https://newsapi.org/v2/top-headlines?sources=techcrunch&apiKey=${API_KEY}`;
+
+In the URL variable, we’ll add an endpoint to get the top headlines from our source, TechCrunch. You can use any source you want from the available sources.
+
+
+> Note: Make sure to put your own API key in the `API_KEY` variable.
+
+Next, define the `fetchArticles()` method as follows:
+
+
+    const fetchArticles = () => {
+    
+      return axios({
+        url: URL,
+        method: 'get'
+      }).then(response => {
+    
+        console.log(response);
+        return response.data;
+      })
+    };
+
+We simply call the `axios()` method to send a GET request to the news endpoint, and the result from the method is a promise that needs to be resolved in order to get the news data.
+
+Next, update the `HomePage` component as follows to call the `fetchArticles()` method and resolve the returned promise:
+
+
+    const HomePage: React.FunctionComponent = () => {
+    
+      const [articles, setArticles] = React.useState([]);
+      const items: any[] = [];
+    
+      React.useEffect(() => {
+    
+        fetchArticles().then(data => setArticles(data.articles));
+    
+      }, []);
+    
+      return (
+        <>
+          <IonHeader>
+            <IonToolbar color="primary">
+              <IonButtons slot="start">
+                <IonMenuButton />
+              </IonButtons>
+              <IonTitle>Home</IonTitle>
+            </IonToolbar>
+          </IonHeader>
+          <IonContent color="primary" >
+            <IonList color="primary">
+    
+              {
+                articles.map(a => {
+    
+                  return (
+                    <IonItem>
+                      {a['title']}
+                      <IonButton href={a['url']} color="primary" slot="end">Read</IonButton>
+                    </IonItem>
+                  );
+                })
+              }
+    
+            </IonList>
+          </IonContent>
+        </>
+      );
+    };
+
+In our function component, we first call the `useState()` hook of React to create the `articles` state variable, which will hold the news articles after we fetch them from the API.
+
+`useState()` returns the state variable, which has the empty array as its initial value and a function that we can use to change the value of the variable. We use destructuring assignment to unpack the values from the returned pair into distinct variables (i.e. `articles` and `setArticles()`).
+
+Next, we call the `useEffect()` hook to perform a side effect in our component. In our case, the side effect is to fetch data from the news API using the `fetchArticles()` method, which returns a promise. Once the promise is resolved, we call the `setArticles()` method to assign the news data to the `articles` variable.
+
+
+> Note: Both `useState()` and `useEffect()` are built-in React hooks that were introduced in React 16.8; they simply let you use state and other React features without having to write a class.
+> The `useEffect()` hook is equivalent to calling the `componentDidMount`, `componentDidUpdate` and `componentWillUnmount` lifecycle methods combined in class-based components.
+
+Finally, in the view template, we iterate over the `articles` array using the `map()` method, and we display the title of each news article inside an `IonItem` element of the `IonList` component, and also a button that takes us to the page of the full article.
+
+This is a screenshot of the page:
+
+![](https://www.diigo.com/file/image/badcbccczobprrpopqzdsaacrcc/Screenshot+from+2019-07-26+14-57-15.jpg?k=325bbbba28ad47a63275406cb636a73b)
+
+
+You can find the source code in this GitHub repository.
+
