@@ -5,7 +5,10 @@ In this quick tutorial we'll see by example how to consume a third-party API usi
 - Install and use Axios for sending HTTP GET requests in TypeScript and React,
 - Consume a third-party REST API,
 - Use React Hooks like useState and useEffect,
-- Display the data using Ionic Card and List components.
+- Display the data using IonList and IonItem components,
+- Create buttons using IonButton.
+
+The `useState()` and `useEffect()` methods are built-in React Hooks introduced in React 16.8+; they enable developers to use state and other React features in functional React components.
 
 Let's get started with the prerequisites!
 
@@ -15,43 +18,49 @@ You need to have the following:
 - Knowledge of TypeScript and React,
 - Ionic CLI v5+ and a Ionic/React project.
 
+We'll make use of a the third-party API available from NewsAPI.org. You should register for a free account and get an API key to access the service otherwise you can also consume any available REST API of your choice.
 
-# Step 1 -- Installing Axios 
+# Step 1 -- Installing Axios in Your Ionic/React Project
 
-We'll see how to install Axios and consume a third-party RESTful API in our application, and 
-Having themed our application, let's now see how to fetch data using Axios. We'll use the third-party API available from NewsAPI.org.
+In this step, we'll see how to install Axios in our Ionic/React project.
 
-First, we need to grab an API key, so that we can communicate with the API. Go to the registration page, enter your information, and register an account. You'll be given an API key; note it, and let's continue.
+Provided that you have already created your Ionic/React project, head back to your terminal and navigate inside the project's root folder and install Axios from npm as follows:
 
-Head back to your terminal, and run the following command to install Axios:
+```bash
+$ cd ./App
+$ npm install axios --save
+```
 
+## Step 2 -- Sending an HTTP GET Request with Axios
 
-    $ npm install axios --save
+In this step, we'll use Axios to send a GET request for consuming the third-party API.
 
-Next, open the `src/pages/Home.tsx` file, and start by importing Axios and `IonButton`:
+If you have generated your Ionic project based on the sidemenu template, you'll already have a home page.
+
+Go ahead and open the `src/pages/Home.tsx` file, and import the necessary APIs i.e `axios` and `IonButton` as follows:
 
 
     import {
-      IonButton
+      IonButton,
+      IonList,
+      IonItem
     } from '@ionic/react';
     
     import axios from 'axios';
 
-Next, define the `API_KEY` and `URL` constant variables:
+Next, define the `apiKEY` and `endpoint` variables:
 
 
-    const  API_KEY  =  "<YOUR_API_KEY_HERE>";
-    const  URL  =  `https://newsapi.org/v2/top-headlines?sources=techcrunch&apiKey=${API_KEY}`;
-
-In the URL variable, we’ll add an endpoint to get the top headlines from our source, TechCrunch. You can use any source you want from the available sources.
+    const  apiKEY  =  "<YOUR_API_KEY_HERE>";
+    const  endpoint  =  `https://newsapi.org/v2/top-headlines?sources=techcrunch&apiKey=${API_KEY}`;
 
 
-> Note: Make sure to put your own API key in the `API_KEY` variable.
+Next, define the following method
 
-Next, define the `fetchArticles()` method as follows:
+Next, define the `sendGetRequest()` method as follows:
 
 
-    const fetchArticles = () => {
+    const sendGetRequest = () => {
     
       return axios({
         url: URL,
@@ -63,19 +72,55 @@ Next, define the `fetchArticles()` method as follows:
       })
     };
 
-We simply call the `axios()` method to send a GET request to the news endpoint, and the result from the method is a promise that needs to be resolved in order to get the news data.
+We call the `axios()` method to send a GET request to the REST API endpoint.
 
-Next, update the `HomePage` component as follows to call the `fetchArticles()` method and resolve the returned promise:
+## Step 3 -- Building the UI with React Hooks and Ionic Components (IonList, IonItem and IonButton)
+
+In this step, we'll build the UI of our home page. We'll use Ionic components such as IonList, IonItem and IonButton, React Hooks such as useState and useEffect.
+
+Inside the `HomePage` functional component and call the useState method to create a state variables named `items` as follows:
+
+
 
 
     const HomePage: React.FunctionComponent = () => {
     
-      const [articles, setArticles] = React.useState([]);
-      const items: any[] = [];
+      const [items, setItems] = React.useState([]);
+    
+
+`useState()` returns the state variable, which has the empty array as its initial value and a function that we can use to change the value of the variable. We use destructuring assignment to unpack the values from the returned pair into distinct variables (i.e. `articles` and `setArticles()`).
+
+
+Next, call the `sendGetRequest()` method inside the `useEffect` hook to consume the REST API:
+
+
+    const HomePage: React.FunctionComponent = () => {
+    
+      const [items, setItems] = React.useState([]);
+    
     
       React.useEffect(() => {
     
-        fetchArticles().then(data => setArticles(data.articles));
+        sendGetRequest().then(data => setItems(data.articles));
+    
+      }, []);
+```
+
+We use use the `useEffect()` hook to perform a side effect in our component. The side effect is consuming data from the REST API. 
+
+The `useEffect()` hook is equivalent to calling the `componentDidMount`, `componentDidUpdate` and `componentWillUnmount` lifecycle methods combined in class-based components.
+
+
+Next, itertate over the items array and render the data fetched from the REST API as folows:
+
+    const HomePage: React.FunctionComponent = () => {
+    
+      const [items, setItems] = React.useState([]);
+    
+    
+      React.useEffect(() => {
+    
+        sendGetRequest().then(data => setItems(data.articles));
     
       }, []);
     
@@ -93,12 +138,12 @@ Next, update the `HomePage` component as follows to call the `fetchArticles()` m
             <IonList color="primary">
     
               {
-                articles.map(a => {
+                items.map(item => {
     
                   return (
                     <IonItem>
-                      {a['title']}
-                      <IonButton href={a['url']} color="primary" slot="end">Read</IonButton>
+                      {item['title']}
+                      <IonButton href={item['url']} color="primary" slot="end">See article</IonButton>
                     </IonItem>
                   );
                 })
@@ -110,22 +155,9 @@ Next, update the `HomePage` component as follows to call the `fetchArticles()` m
       );
     };
 
-In our function component, we first call the `useState()` hook of React to create the `articles` state variable, which will hold the news articles after we fetch them from the API.
 
-`useState()` returns the state variable, which has the empty array as its initial value and a function that we can use to change the value of the variable. We use destructuring assignment to unpack the values from the returned pair into distinct variables (i.e. `articles` and `setArticles()`).
+This is a screenshot of the home page UI:
 
-Next, we call the `useEffect()` hook to perform a side effect in our component. In our case, the side effect is to fetch data from the news API using the `fetchArticles()` method, which returns a promise. Once the promise is resolved, we call the `setArticles()` method to assign the news data to the `articles` variable.
+![React Ionic example](https://www.diigo.com/file/image/badcbccczobprrpopqzdsaacrcc/Screenshot+from+2019-07-26+14-57-15.jpg?k=325bbbba28ad47a63275406cb636a73b)
 
-
-> Note: Both `useState()` and `useEffect()` are built-in React hooks that were introduced in React 16.8; they simply let you use state and other React features without having to write a class.
-> The `useEffect()` hook is equivalent to calling the `componentDidMount`, `componentDidUpdate` and `componentWillUnmount` lifecycle methods combined in class-based components.
-
-Finally, in the view template, we iterate over the `articles` array using the `map()` method, and we display the title of each news article inside an `IonItem` element of the `IonList` component, and also a button that takes us to the page of the full article.
-
-This is a screenshot of the page:
-
-![](https://www.diigo.com/file/image/badcbccczobprrpopqzdsaacrcc/Screenshot+from+2019-07-26+14-57-15.jpg?k=325bbbba28ad47a63275406cb636a73b)
-
-
-You can find the source code in this GitHub repository.
 
