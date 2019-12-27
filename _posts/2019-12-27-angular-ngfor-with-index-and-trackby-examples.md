@@ -77,8 +77,8 @@ import { Component } from '@angular/core';
   selector: 'app-movies-list',
   template: `
     <ul>
-      <li *ngFor="let movie of moviesArr">
-        {{ movie.title }}
+      <li *ngFor="let movie of moviesArr; let i = index">
+         {{i}} - {{ movie.title }}
       </li>
     </ul>
     `
@@ -86,5 +86,66 @@ import { Component } from '@angular/core';
 
 export class MoviesListComponent  { /* ... */ }
 ```
+
+Inside the `ngFor` expression, we defined another variable called `i` which gets assigned the `index` keyword which simply contains the current index of each element in each iteration. And we used interpolation to display the value of the `i` and `movie.title` variables. 
+
+> Note: The index starts from 0 not 1.
+
+Angular also provides the reserved `first` and `last` keywords for getting the first and last items in the array.
+
+## The ngFor trackBy 
+
+Angular provides the `trackBy` feature which allows you to track elements when they are added or removed from the array for performance reasons.
+
+we simmpl need to define a `trackBy` method, which needs to identify each element uniquely, in the associated component and assign it to the `ngFor` directive as follows:
+
+```typescript
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-movies-list',
+  template: `
+    <ul>
+      <li *ngFor="let movie of moviesArr; trackBy: trackByMethod">
+        {{ movie.title }}
+      </li>
+    </ul>
+    `
+})
+
+export class MoviesListComponent  {
+    moviesArr: any[] = [
+    {
+      "id": 1,
+      "title": "Super Man"
+    },
+    {
+      "id": 2,
+      "title": "Spider Man"
+    },
+    {
+      "id": 3,
+      "title": "Aladdin"
+    }, 
+    {
+      "id": 4,
+      "title": "Downton Abbey"
+    }
+  ];
+   
+   trackByMethod(index:number, el:any): number {
+    return el.id;
+  }
+}
+```
+
+We can simply identify each element in a unique way using its `id`.
+
+
+
+
+
+
+
 
 
