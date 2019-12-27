@@ -58,7 +58,33 @@ The `moviesArr` array is automatically available in the component's template whi
 
 We use the ngFor directive to iterate over the array of movies and display the title of each movie.
 
-The directive has the `*ngFor="let movie of moviesArr"` syntax. After the `let` keyword, we add a variable, which can be any valid variable name, that will be used to reference and access each element of the array and after the `of` keyword, we add the array of data which must be present in the component
+The directive has the `*ngFor="let movie of moviesArr"` syntax. After the `let` keyword, we add a variable, which can be any valid variable name, that will be used to reference and access each element of the array and after the `of` keyword, we add the array of data which must be present in the component.
 
+We also need to prefix `ngFor` with a `*` before providing the iteration expression. 
+
+## The Index of ngFor Elements
+
+Suppose that we need to display the index of each element of the movies array. 
+
+Angular provides the reserved `index` keyword inside the `ngFor` expression which can be used as follows:
+
+
+
+```typescript
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-movies-list',
+  template: `
+    <ul>
+      <li *ngFor="let movie of moviesArr">
+        {{ movie.title }}
+      </li>
+    </ul>
+    `
+})
+
+export class MoviesListComponent  { /* ... */ }
+```
 
 
