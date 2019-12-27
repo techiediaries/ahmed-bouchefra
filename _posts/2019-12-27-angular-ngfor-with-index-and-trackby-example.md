@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Angular 9/8/7 ngFor with Index and trackBy Examples"
+title:  "Angular 9/8/7 ngFor with Index and trackBy Example"
 date:   2019-12-27
 ---
 
@@ -142,6 +142,11 @@ export class MoviesListComponent  {
 We can simply identify each element in a unique way using its `id`.
 
 
+## Conclusion
+
+We can use the ngFor directive to iterate over arrays of data right in the Angular's component template.
+
+We can use other features like `index`, `first`, `last` and `trackBy` to get the index of the current element, the first and last elements and for tracking the addition or removal of the array elements for performane reasons.  
 
 
 
