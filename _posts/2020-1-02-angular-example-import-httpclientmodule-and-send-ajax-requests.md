@@ -1,13 +1,13 @@
 ---
 layout: post
-title:  "Angular 9 Example: How to Import and Use HttpClientModule to Send Ajax Requests"
+title:  "Angular 9 Example: Import HttpClientModule and Send Ajax Requests to JSON REST API Servers"
 date:   2020-1-02
 ---
 
 [`HttpClientModule`](https://angular.io/api/common/http/HttpClientModule) 
 configures the  [dependency injector](https://angular.io/guide/glossary#injector)  for  [`HttpClient`](https://angular.io/api/common/http/HttpClient) with supporting services for XSRF.
 
-In this example, we'll see how to import `HttpclientModule` in Angular and use `HttpClient` to send an Ajax GET request.
+In this example, we'll see how to import `HttpclientModule` in Angular and use `HttpClient` to send an Ajax GET request to JSON REST API servers.
 
 
 ## What is HttpClient and how it Relates to Ajax?
@@ -108,5 +108,5 @@ Next, open the `src/app/app.component.ts` file and add a button to call the  `se
 
 ## Conclusion
 
-In this quick how-to post, we have seen how to import `HttpClientModule` in Angular and used the `HttpClient` service to send an example Ajax GET request to a server. 
+In this quick how-to post, we have seen how to import `HttpClientModule` in Angular and used the `HttpClient` service to send an example Ajax GET request to a REST API server server. 
 
