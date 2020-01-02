@@ -12,8 +12,8 @@ We’ll see how to use Angular Material  **ProgressBar** for indicating activity
 
 By following this tutorial, you’ll learn the following skills:
 
--   How to upload single and multiple image files in TypeScript and Angular 8
--   How to set up HttpClient in your Angular 8 project,
+-   How to upload single and multiple image files in TypeScript and Angular 9
+-   How to set up HttpClient in your Angular 9 project,
 -   How to use HttpClient to send POST requests with  **multipart/form-data**,
 -   How to listen for file upload progress events using HttpClient,
 -   How to use FormData to create forms in TypeScript,
@@ -22,14 +22,14 @@ By following this tutorial, you’ll learn the following skills:
 
 These are the steps of this tutorial:
 
--   Step 1 — Setting up Angular CLI v8
--   Step 2 — Initializing a New Angular 8 Project
--   Step 3 — Setting up Angular HttpClient
--   Step 4 — Creating Angular Components
--   Step 5 — Adding Angular Routing
--   Step 6 — Setting up Angular Material
--   Step 7 — Creating an Angular File Upload Service
--   Step 8 — Creating a File Upload UI with Material Icon, Card, Button, and ProgressBar Components
+-   Angular 9 Tutorial, Step 1 — Setting up Angular CLI v8
+-   Angular 9 Tutorial, Step 2 — Initializing a New Angular 8 Project
+-   Angular 9 Tutorial, Step 3 — Setting up Angular HttpClient
+-   Angular 9 Tutorial, Step 4 — Creating Angular Components
+-   Angular 9 Tutorial, Step 5 — Adding Angular Routing
+-   Angular 9 Tutorial, Step 6 — Setting up Angular Material
+-   Angular 9 Tutorial, Step 7 — Creating an Angular File Upload Service
+-   Angular 9 Tutorial, Step 8 — Creating a File Upload UI with Material Icon, Card, Button, and ProgressBar Components
 
 We’ll not create a server application for file upload since this is out of the scope of this tutorial. Instead, we’ll be using  [https://file.io](https://file.io/) a service for uploading and sharing files online.
 
@@ -63,7 +63,7 @@ Now, let’s proceed to our tutorial starting with the prerequisites.
 
 ## Prerequisites
 
-In this tutorial, we’ll create an example application with Angular 8, so you will need to have a few prerequisites:
+In this tutorial, we’ll create an example application with Angular 9, so you will need to have a few prerequisites:
 
 -   A development environment with Node.JS and NPM installed
 -   Basic knowledge of TypeScript. Particularly the familiarity with Object-Oriented concepts such as TypeScript classes and decorators.
@@ -71,7 +71,7 @@ In this tutorial, we’ll create an example application with Angular 8, so you w
 
 > **Note**: If you don’t want to install a local environment for Angular development but still want to try the code in this tutorial, you can use  [Stackblitz](https://stackblitz.com/), an online IDE for frontend development that you can use to create an Angular project compatible with Angular CLI.
 
-## Step 1 — Setting up Angular CLI v8
+## Angular 9 Tutorial, Step 1 — Setting up Angular CLI v8
 
 In this step, we’ll install the latest Angular CLI 8 version (at the time of writing this tutorial).
 
@@ -79,7 +79,7 @@ In this step, we’ll install the latest Angular CLI 8 version (at the time of w
 
 
 
-![](https://miro.medium.com/max/461/0*Hw8iYMr2z5mpG2z7.jpg)
+![Angular 9 Tutorial](https://miro.medium.com/max/461/0*Hw8iYMr2z5mpG2z7.jpg)
 
 [Angular CLI](https://cli.angular.io/)  is the official tool for initializing and working with Angular projects. To install it, open a new command-line interface and run the following command:
 
@@ -91,7 +91,7 @@ At the time of writing this tutorial,  **angular/cli v8.3.2**  will be installed
 
 In the next step, we’ll learn how to initialize a new example project from the terminal.
 
-## Step 2 — Initializing a New Angular 8 Project
+## Angular 9 Tutorial, Step 2 — Initializing a New Angular 8 Project
 
 After installing Angular CLI, let’s create our example project. Head back to your terminal and run the following commands:
 
@@ -113,17 +113,17 @@ $ ng serve
 
 A local development server will start listening on the  [http://localhost:4200/](http://localhost:4200/)  address.
 
-![](https://miro.medium.com/max/916/0*wnYMtGBL8jDvF0MR.jpg)
+![Angular 9 Tutorial](https://miro.medium.com/max/916/0*wnYMtGBL8jDvF0MR.jpg)
 
 Open your web browser and navigate to the  [http://localhost:4200/](http://localhost:4200/)  address to see your app up and running. This is a screenshot at this point:
 
 
 
-![](https://miro.medium.com/max/1357/0*FV8MlSRSeEMg6mnq.png)
+![Angular 9 Tutorial](https://miro.medium.com/max/1357/0*FV8MlSRSeEMg6mnq.png)
 
 You should now leave the development server running and start a new terminal for running the CLI commands of the next steps.
 
-## Step 3 — Setting up Angular HttpClient
+## Angular 9 Tutorial, Step 3 — Setting up Angular HttpClient
 
 After initializing our Angular project using Angular CLI, let’s continue by setting up  `HttpClienti`in our example.
 
@@ -157,7 +157,7 @@ export class AppModule { }
 
 That’s all, we are now ready to use the  `HttpClient`  service in our project but first we need to create two, home and about, components of our app.
 
-## Step 4 — Creating Angular Components
+## Angular 9 Tutorial, Step 4 — Creating Angular Components
 
 After setting up Angular HttpClient, let’s create the Angular components that control our application UI.
 
@@ -186,7 +186,7 @@ Next, open the  `src/app/about/about.component.html`  and add the following code
 
 We’ll leave the home component for the next steps.
 
-## Step 5 — Adding Angular Routing
+## Angular 9 Tutorial, Step 5 — Adding Angular Routing
 
 After creating the Angular components, let’s add them to the Router.
 
@@ -211,7 +211,7 @@ const routes: Routes = [
 export class AppRoutingModule { }
 ```
 
-## Step 6 — Setting up Angular Material
+## Angular 9 Tutorial, Step 6 — Setting up Angular Material
 
 After adding routing to the various components of our application, let’s see how to add Angular Material to style the UI.
 
@@ -297,7 +297,7 @@ As a recap of our tutorial to this point:
 -   We have installed Angular CLI, initialized a new project and created a couple of components with routing,
 -   We have configured HttpClient and Angular Material in our project and added an app shell that contains a topbar and navigation.
 
-## Step 7 — Creating an Angular File Upload Service
+## Angular 9 Tutorial, Step 7 — Creating an Angular File Upload Service
 
 Now, let’s create an Angular service that encapsulates the code for image file uploading in our project.
 
@@ -337,7 +337,7 @@ public upload(formData) {
 }
 ```
 
-## Step 9 — Creating a File Upload UI with Material Icon, Card, Button, and ProgressBar Components
+## Angular 9 Tutorial, Step 9 — Creating a File Upload UI with Material Icon, Card, Button, and ProgressBar Components
 
 After creating the service that takes care of sending FormData to the file upload server, let’s now create the UI for uploading images to the server.
 
@@ -461,7 +461,7 @@ li {
 This is a screenshot of our application when uploading four images files:
 
 
-![](https://miro.medium.com/max/1093/1*WLxe9omiqmBaa1rSV5sOWA.png)
+![Angular 9 Tutorial](https://miro.medium.com/max/1093/1*WLxe9omiqmBaa1rSV5sOWA.png)
 
 
 
